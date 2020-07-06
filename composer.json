@@ -1,0 +1,30 @@
+{
+  "name": "piotrooo/php-hosts",
+  "description": "PHP library for managing a hosts file.",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Piotr Olaszewski",
+      "email": "piotroo89@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.4",
+    "letsdrink/ouzo-goodies": "1.7.0"
+  },
+  "require-dev": {
+    "mikey179/vfsstream": "1.6.8",
+    "phpunit/phpunit": "9.2.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "PhpHosts\\": "src/PhpHosts"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "PhpHosts\\": "tests/PhpHosts"
+    }
+  }
+}
