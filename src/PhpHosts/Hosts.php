@@ -65,7 +65,10 @@ class Hosts
 
     public function existsByIp(string $ip): bool
     {
-        return Arrays::any($this->hostEntries, FluentFunctions::extractExpression('getIp()')->equals($ip));
+        return Arrays::any($this->hostEntries, function (HostEntry $hostEntry) use ($ip) {
+            return $ip === $hostEntry->getIp();
+        });
+//        return Arrays::any($this->hostEntries, FluentFunctions::extractExpression('getIp()')->equals($ip));
     }
 
     public function findByName(string $name): ?HostEntry
@@ -117,7 +120,7 @@ class Hosts
         $this->fileWriter->write($this->pathProvider->get(), $this->hostEntries);
     }
 
-    private function populate(): void
+    public function populate(): void
     {
         $this->hostEntries = $this->fileParser->parse($this->pathProvider->get());
     }

@@ -70,6 +70,7 @@ class HostsTest extends TestCase
             HostEntry::forIp(Type::IPV4, '10.0.0.1', ['example1.com', 'example2.com'])
         ];
         Mock::when($this->fileParser)->parse(Mock::any())->thenReturn($hostEntries);
+        $this->hosts->populate();
 
         //when
         $existsByName = $this->hosts->existsByName('example2.com');
@@ -89,6 +90,7 @@ class HostsTest extends TestCase
             HostEntry::forIp(Type::IPV4, '10.0.0.1', ['example1.com', 'example2.com'])
         ];
         Mock::when($this->fileParser)->parse(Mock::any())->thenReturn($hostEntries);
+        $this->hosts->populate();
 
         //when
         $existsByName = $this->hosts->existsByName('non-exists.com');
@@ -108,6 +110,7 @@ class HostsTest extends TestCase
             HostEntry::forIp(Type::IPV4, '10.0.0.1', ['example1.com', 'example2.com'])
         ];
         Mock::when($this->fileParser)->parse(Mock::any())->thenReturn($hostEntries);
+        $this->hosts->populate();
 
         //when
         $existsByIp = $this->hosts->existsByIp('127.0.0.1');
@@ -127,6 +130,7 @@ class HostsTest extends TestCase
             HostEntry::forIp(Type::IPV4, '10.0.0.1', ['example1.com', 'example2.com'])
         ];
         Mock::when($this->fileParser)->parse(Mock::any())->thenReturn($hostEntries);
+        $this->hosts->populate();
 
         //when
         $existsByIp = $this->hosts->existsByIp('192.168.1.1');
@@ -147,6 +151,7 @@ class HostsTest extends TestCase
             $hostEntry
         ];
         Mock::when($this->fileParser)->parse(Mock::any())->thenReturn($hostEntries);
+        $this->hosts->populate();
 
         //when
         $findHostEntry = $this->hosts->findByName('example1.com');
@@ -166,6 +171,7 @@ class HostsTest extends TestCase
             HostEntry::forIp(Type::IPV4, '10.0.0.1', ['example1.com', 'example2.com'])
         ];
         Mock::when($this->fileParser)->parse(Mock::any())->thenReturn($hostEntries);
+        $this->hosts->populate();
 
         //when
         $findHostEntry = $this->hosts->findByName('non-exists.com');
@@ -186,6 +192,7 @@ class HostsTest extends TestCase
             $hostEntry
         ];
         Mock::when($this->fileParser)->parse(Mock::any())->thenReturn($hostEntries);
+        $this->hosts->populate();
 
         //when
         $findHostEntry = $this->hosts->findByIp('10.0.0.1');
@@ -205,6 +212,7 @@ class HostsTest extends TestCase
             HostEntry::forIp(Type::IPV4, '10.0.0.1', ['example1.com', 'example2.com'])
         ];
         Mock::when($this->fileParser)->parse(Mock::any())->thenReturn($hostEntries);
+        $this->hosts->populate();
 
         //when
         $findHostEntry = $this->hosts->findByIp('192.168.1.1');
@@ -224,6 +232,7 @@ class HostsTest extends TestCase
             HostEntry::forIp(Type::IPV4, '10.0.0.1', ['example1.com', 'example2.com'])
         ];
         Mock::when($this->fileParser)->parse(Mock::any())->thenReturn($hostEntries);
+        $this->hosts->populate();
 
         $hostEntry = HostEntry::forIp(Type::IPV4, '192.168.1.1', []);
 
@@ -247,6 +256,7 @@ class HostsTest extends TestCase
             HostEntry::forIp(Type::IPV4, '10.0.0.1', ['example1.com', 'example2.com'])
         ];
         Mock::when($this->fileParser)->parse(Mock::any())->thenReturn($hostEntries);
+        $this->hosts->populate();
 
         $hostEntry = HostEntry::forIp(Type::IPV4, '127.0.0.1', ['new-name.example.com', 'second-new-name.example.com']);
 
@@ -268,6 +278,7 @@ class HostsTest extends TestCase
             HostEntry::forIp(Type::IPV4, '127.0.0.1', ['local']),
             HostEntry::forIp(Type::IPV4, '10.0.0.1', ['example1.com', 'example2.com'])
         ];
+        $this->hosts->populate();
 
         //when
         $this->hosts->addAll($hostEntries);
@@ -293,6 +304,7 @@ class HostsTest extends TestCase
             HostEntry::forIp(Type::IPV4, '10.0.0.1', ['example1.com', 'example2.com'])
         ];
         Mock::when($this->fileParser)->parse(Mock::any())->thenReturn($hostEntries);
+        $this->hosts->populate();
 
         //when
         $this->hosts->removeByIp('10.0.0.1');
@@ -317,6 +329,7 @@ class HostsTest extends TestCase
             HostEntry::forIp(Type::IPV4, '10.0.0.1', ['example1.com', 'example2.com'])
         ];
         Mock::when($this->fileParser)->parse(Mock::any())->thenReturn($hostEntries);
+        $this->hosts->populate();
 
         //when
         $this->hosts->removeByName('example2.com');
@@ -343,6 +356,7 @@ class HostsTest extends TestCase
         ];
         Mock::when($this->fileParser)->parse(Mock::any())->thenReturn($hostEntries);
         Mock::when($this->pathProvider)->get()->thenReturn('/path/to/hosts');
+        $this->hosts->populate();
 
         //when
         $this->hosts->write();
